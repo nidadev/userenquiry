@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Checkbox, Label, TextInput,Textarea } from "flowbite-react";
 export default function Enquiry() {
   return (
     <div>
@@ -20,7 +20,11 @@ export default function Enquiry() {
                   </div>
                   <div className="py-3">
                     <Label htmlFor="phone">Your Phone</Label>
-                    <TextInput id="phone" type="tel" placeholder="Enter your phone number" required />
+                    <TextInput id="phone" type="text" placeholder="Enter your phone number" required />
+                  </div>
+                  <div className="py-3">
+                    <Label htmlFor="message">Your Message</Label>
+                    <Textarea id="message" placeholder="Leave a comment..." required rows={4} />
                   </div>
                 </form>
                 </div>             
