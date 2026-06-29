@@ -11,7 +11,8 @@ export default function Enquiry() {
                 <h2 className='text-[24px] font-bold py-4'>Enquiry form</h2>
                 <form>
                   <div className="py-3">
-<label>Name:</label>
+                    <Label htmlFor="name">Your Name</Label>
+                    <TextInput id="name" type="text" placeholder="John Doe" required />
                   </div>
                 </form>
                 </div>             
