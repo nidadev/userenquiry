@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Checkbox, Label, TextInput,Textarea } from "flowbite-react";
+import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 export default function Enquiry() {
   let saveEnquiry = (e) => {
     alert("Enquiry saved successfully");
@@ -14,7 +15,7 @@ export default function Enquiry() {
         
         <h1 className='text-[40px] text-center py-6 font-bold'> User Enquiry</h1>
 
-        <div className='grid grid-cols-[30%_auto]'>
+        <div className='grid grid-cols-[30%_auto] gap-20'>
                <div className='bg-gray-200 p-4'>
                 <h2 className='text-[24px] font-bold py-4'>Enquiry form</h2>
                 <form method="post" action="" className="flex max-w-md flex-col gap-4" onSubmit={saveEnquiry}>
@@ -45,6 +46,45 @@ export default function Enquiry() {
 
                 <div>
                                   <h2 className='text-[24px] font-bold py-4'>Enquiry List</h2>
+                                  <div className="overflow-x-auto">
+      <Table striped>
+        <TableHead>
+          <TableHeadCell>S.No</TableHeadCell>
+          <TableHeadCell>Name</TableHeadCell>
+          <TableHeadCell>Email</TableHeadCell>
+          <TableHeadCell>Phone</TableHeadCell>
+          <TableHeadCell>Message</TableHeadCell>
+          <TableHeadCell>
+            <span className="sr-only">Edit</span>
+          </TableHeadCell>
+          <TableHeadCell>
+            <span className="sr-only">Delete</span>
+          </TableHeadCell>
+        </TableHead>
+        <TableBody className="divide-y">
+          <TableRow className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              1
+            </TableCell>
+            <TableCell>abc</TableCell>
+            <TableCell>abc@example.com</TableCell>
+            <TableCell>$123</TableCell>
+            <TableCell>hello</TableCell>
+            <TableCell>
+              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                Edit
+              </a>
+            </TableCell>
+             <TableCell>
+              <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                delete
+              </a>
+            </TableCell>
+          </TableRow>
+        
+        </TableBody>
+      </Table>
+    </div>
 
                   </div>            
 
