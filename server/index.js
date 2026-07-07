@@ -1,9 +1,11 @@
 let express=require('express');
 require('dotenv').config();
 let enquiryRouter=require('./App/routes/web/EnquiryRoutes');
+let cors=require('cors');
 
 let mongoose=require('mongoose');
 let app=express();
+app.use(cors());
 
 app.use(express.json());
 
