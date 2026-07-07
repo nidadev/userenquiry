@@ -3,12 +3,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { ToastContainer,toast } from 'react-toastify';
 
 import axios from 'axios';
-export function EnquiryList({data, getEnquiryList,Swal}) {
+export function EnquiryList({data, getEnquiryList,Swal,setFormData}) {
     let editRow = (editid) => {
 axios.get("http://localhost:8020/api/web/enquiry/single/"+editid).then((res)=>{
             console.log(res.data);
-            toast.success("Row edited successfully");
-            getEnquiryList();
+            //toast.success("Row edited successfully");
+            setFormData(res.data.data);
+            //getEnquiryList();
         });
     }
     let deleteRow = (delid) => {
