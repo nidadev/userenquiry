@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Checkbox, Label, TextInput, Textarea } from "flowbite-react";
 import axios from 'axios';
 
 import { EnquiryList } from './enquiry/EnquiryList';
 
 export default function Enquiry() {
+
+  let [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
   let saveEnquiry = (e) => {
     alert("Enquiry saved successfully");
     e.preventDefault();
@@ -33,19 +40,19 @@ export default function Enquiry() {
           <form method="post" action="" className="flex max-w-md flex-col gap-4" onSubmit={saveEnquiry}>
             <div className="py-3">
               <Label htmlFor="name">Your Name</Label>
-              <TextInput id="name" name="name" type="text" placeholder="Enter your name" required />
+              <TextInput id="name" name="name" onChange={getValue} type="text" placeholder="Enter your name" required />
             </div>
             <div className="py-3">
               <Label htmlFor="email">Your Email</Label>
-              <TextInput id="email" name="email" type="email" placeholder="Enter your email" required />
+              <TextInput id="email" name="email" onChange={getValue} type="email" placeholder="Enter your email" required />
             </div>
             <div className="py-3">
               <Label htmlFor="phone">Your Phone</Label>
-              <TextInput id="phone" name="phone" type="text" placeholder="Enter your phone number" required />
+              <TextInput id="phone" name="phone" onChange={getValue} type="text" placeholder="Enter your phone number" required />
             </div>
             <div className="py-3">
               <Label htmlFor="message">Your Message</Label>
-              <Textarea id="message" name="message" placeholder="Leave a comment..." required rows={4} />
+              <Textarea id="message" name="message" onChange={getValue} placeholder="Leave a comment..." required rows={4} />
             </div>
             <div className="py-3">
               <Button className="w-[100%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
