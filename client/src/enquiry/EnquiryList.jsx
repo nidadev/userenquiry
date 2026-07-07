@@ -1,6 +1,33 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
-export function EnquiryList({data}) {
+import { ToastContainer,toast } from 'react-toastify';
+
+import axios from 'axios';
+export function EnquiryList({data, getEnquiryList,Swal}) {
+    let deleteRow = (delid) => {
+        //e.preventDefault();
+        Swal.fire({
+  title: "Do you want to save the changes?",
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: "Save",
+
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {Swal.fire("Saved!", "", "success");
+axios.delete("http://localhost:8020/api/web/enquiry/delete/"+delid).then((res)=>{
+            console.log(res.data);
+            //toast.success("Row deleted successfully");
+            
+            getEnquiryList();
+        });
+    }
+  else if (result.isDenied) Swal.fire("Changes are not saved", "", "info");
+});
+        
+        //alert(delid);
+        //alert("Row deleted successfully");
+    }
     console.log(data);
   return( <div className='bg-gray-200 p-4'>
           <h2 className='text-[24px] font-bold py-4'>Enquiry List</h2>
@@ -40,7 +67,7 @@ export function EnquiryList({data}) {
                           </a>
                         </TableCell>
                         <TableCell>
-                          <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                          <a href="#" onClick={()=>deleteRow(item._id)} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                             delete
                           </a>
                         </TableCell>

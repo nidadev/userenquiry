@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Button, Checkbox, Label, TextInput, Textarea } from "flowbite-react";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 import { EnquiryList } from './enquiry/EnquiryList';
 
@@ -90,7 +92,7 @@ export default function Enquiry() {
           </form>
         </div>
 
-       <EnquiryList data={enquiryList} />
+       <EnquiryList data={enquiryList} getEnquiryList={getEnquiryList} Swal={Swal}/>
 
       </div>
     </div>

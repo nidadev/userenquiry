@@ -36,4 +36,11 @@ let enquiryList=async (req,res)=>{
     data:enquiryList
  })
 }
-module.exports={enquiryInsert,enquiryList};
+let enquiryDel=async (req,res)=>{
+    let {id} = req.params
+    let deleteEnquiry = await enquiryModel.deleteOne({_id:id})
+     res.send({
+        status:1
+     })
+}   
+module.exports={enquiryInsert,enquiryList,enquiryDel};
