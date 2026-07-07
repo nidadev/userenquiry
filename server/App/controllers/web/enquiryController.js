@@ -28,4 +28,12 @@ let enquiryInsert=(req, res)=>{
     });
 
 }
-module.exports={enquiryInsert};
+
+let enquiryList=async (req,res)=>{
+    let enquiryList = await enquiryModel.find()
+ res.send({
+    status:1,
+    data:enquiryList
+ })
+}
+module.exports={enquiryInsert,enquiryList};

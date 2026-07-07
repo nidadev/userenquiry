@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Checkbox, Label, TextInput, Textarea } from "flowbite-react";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { EnquiryList } from './enquiry/EnquiryList';
 
 export default function Enquiry() {
+  let [enquiryList, setEnquiryList] = useState([]);
 
   let [formData, setFormData] = useState({
     name: "",
@@ -27,12 +29,20 @@ export default function Enquiry() {
     // }
     axios.post("http://localhost:8020/api/web/enquiry/insert",formData).then((res)=>{
       console.log(res.data);
+      toast.success("Enquiry saved successfully");
       setFormData({
         name: "",
         email: "",
         phone: "",
         message: ""
       });
+    });
+  }
+
+  let getEnquiryList = () => {
+    axios.get("http://localhost:8020/api/web/enquiry/list").then((res) => {
+      console.log(res.data);
+      setEnquiryList(res.data.data);
     });
   }
 
@@ -43,9 +53,12 @@ export default function Enquiry() {
     oldData[inputName] = inputValue;
     setFormData(oldData);
   }
+  useEffect(() => {
+    getEnquiryList();
+  }, []);
   return (
     <div>
-
+<ToastContainer />
       <h1 className='text-[40px] text-center py-6 font-bold'> User Enquiry</h1>
       <div className='grid grid-cols-[30%_auto] gap-10'>
         <div className='bg-gray-200 p-4'>
@@ -77,7 +90,7 @@ export default function Enquiry() {
           </form>
         </div>
 
-       <EnquiryList />
+       <EnquiryList data={enquiryList} />
 
       </div>
     </div>
