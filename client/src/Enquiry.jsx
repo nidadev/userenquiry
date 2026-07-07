@@ -31,8 +31,11 @@ export default function Enquiry() {
   }
 
   let getValue = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    let inputName = e.target.name;
+    let inputValue = e.target.value;
+    let oldData = { ...formData };
+    oldData[inputName] = inputValue;
+    setFormData(oldData);
   }
   return (
     <div>
