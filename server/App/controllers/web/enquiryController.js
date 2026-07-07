@@ -43,4 +43,12 @@ let enquiryDel=async (req,res)=>{
         status:1
      })
 }   
-module.exports={enquiryInsert,enquiryList,enquiryDel};
+let enquirySingle=async (req,res)=>{
+    let {id} = req.params
+    let singleEnquiry = await enquiryModel.findOne({_id:id})
+    res.send({
+        status:1,
+        data:singleEnquiry
+    })
+}
+module.exports={enquiryInsert,enquiryList,enquiryDel,enquirySingle};

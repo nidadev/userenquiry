@@ -4,6 +4,13 @@ import { ToastContainer,toast } from 'react-toastify';
 
 import axios from 'axios';
 export function EnquiryList({data, getEnquiryList,Swal}) {
+    let editRow = (editid) => {
+axios.get("http://localhost:8020/api/web/enquiry/single/"+editid).then((res)=>{
+            console.log(res.data);
+            toast.success("Row edited successfully");
+            getEnquiryList();
+        });
+    }
     let deleteRow = (delid) => {
         //e.preventDefault();
         Swal.fire({
@@ -62,7 +69,7 @@ axios.delete("http://localhost:8020/api/web/enquiry/delete/"+delid).then((res)=>
                         <TableCell>{item.phone}</TableCell>
                         <TableCell>{item.message}</TableCell>
                         <TableCell>
-                          <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                          <a href="#" onClick={()=>editRow(item._id)} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                             Edit
                           </a>
                         </TableCell>
