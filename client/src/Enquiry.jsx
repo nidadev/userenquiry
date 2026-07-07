@@ -29,6 +29,11 @@ export default function Enquiry() {
       console.log(res.data);
     });
   }
+
+  let getValue = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+  }
   return (
     <div>
 
@@ -40,19 +45,19 @@ export default function Enquiry() {
           <form method="post" action="" className="flex max-w-md flex-col gap-4" onSubmit={saveEnquiry}>
             <div className="py-3">
               <Label htmlFor="name">Your Name</Label>
-              <TextInput id="name" name="name" onChange={getValue} type="text" placeholder="Enter your name" required />
+              <TextInput id="name" name="name" value={formData.name} onChange={getValue} type="text" placeholder="Enter your name" required />
             </div>
             <div className="py-3">
               <Label htmlFor="email">Your Email</Label>
-              <TextInput id="email" name="email" onChange={getValue} type="email" placeholder="Enter your email" required />
+              <TextInput id="email" name="email" value={formData.email} onChange={getValue} type="email" placeholder="Enter your email" required />
             </div>
             <div className="py-3">
               <Label htmlFor="phone">Your Phone</Label>
-              <TextInput id="phone" name="phone" onChange={getValue} type="text" placeholder="Enter your phone number" required />
+              <TextInput id="phone" name="phone" value={formData.phone} onChange={getValue} type="text" placeholder="Enter your phone number" required />
             </div>
             <div className="py-3">
               <Label htmlFor="message">Your Message</Label>
-              <Textarea id="message" name="message" onChange={getValue} placeholder="Leave a comment..." required rows={4} />
+              <Textarea id="message" name="message" value={formData.message} onChange={getValue} placeholder="Leave a comment..." required rows={4} />
             </div>
             <div className="py-3">
               <Button className="w-[100%] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
