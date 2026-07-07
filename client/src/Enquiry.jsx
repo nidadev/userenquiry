@@ -29,6 +29,21 @@ export default function Enquiry() {
     //   phone:e.target.phone.value, 
     //   message:e.target.message.value
     // }
+    if(formData._id){
+      axios.put("http://localhost:8020/api/web/enquiry/update/"+formData._id,formData).then((res)=>{
+        console.log(res.data);
+      });
+        toast.success("Enquiry updated successfully");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          _id: ""
+        });
+    }
+    else
+    {
     axios.post("http://localhost:8020/api/web/enquiry/insert",formData).then((res)=>{
       console.log(res.data);
       toast.success("Enquiry saved successfully");
@@ -41,6 +56,7 @@ export default function Enquiry() {
       });
     });
   }
+}
 
   let getEnquiryList = () => {
     axios.get("http://localhost:8020/api/web/enquiry/list").then((res) => {

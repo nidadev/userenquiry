@@ -51,4 +51,21 @@ let enquirySingle=async (req,res)=>{
         data:singleEnquiry
     })
 }
-module.exports={enquiryInsert,enquiryList,enquiryDel,enquirySingle};
+let enquiryUpd=async (req,res)=>{
+    let {id} = req.params
+    let {name,email,phone,message} = req.body
+    let enquiryUpdateObj= {
+        name:name,
+        email:email,
+        phone:phone,
+        message:message
+    }
+    let enquiryUpd = await enquiryModel.updateOne({_id:id},enquiryUpdateObj)
+     res.send({
+        status:1,
+        message:"data updated",
+        id:id,
+        updRes:updateEnquiry
+       
+    })  }                        
+module.exports={enquiryInsert,enquiryList,enquiryDel,enquirySingle,enquiryUpd};
