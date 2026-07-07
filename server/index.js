@@ -1,5 +1,10 @@
 let express=require('express');
+require('dotenv').config();
 let mongoose=require('mongoose');
 let app=express();
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DBURL).then(()=>{
+    console.log("DB connected");
+}).catch((err)=>{
+    console.log("DB connection failed");
+});
