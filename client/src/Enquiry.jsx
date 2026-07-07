@@ -19,14 +19,20 @@ export default function Enquiry() {
     // let email = e.target.email.value;
     // let phone = e.target.phone.value;
     // let message = e.target.message.value;
-    let formData={
-      name:e.target.name.value,
-      email:e.target.email.value,
-      phone:e.target.phone.value, 
-      message:e.target.message.value
-    }
+    // let formData={
+    //   name:e.target.name.value,
+    //   email:e.target.email.value,
+    //   phone:e.target.phone.value, 
+    //   message:e.target.message.value
+    // }
     axios.post("http://localhost:8020/api/web/enquiry/insert",formData).then((res)=>{
       console.log(res.data);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
     });
   }
 
